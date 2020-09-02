@@ -1,0 +1,6 @@
+.Table table,th,td {
+    border: 1px solid black;
+  }
+.Table table{
+width : 100%
+}
