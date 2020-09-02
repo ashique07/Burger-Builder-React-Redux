@@ -35,5 +35,6 @@ export {
 export {
     address,
     addressInit,
-    fetchAddress
+    fetchAddress,
+    addressCheckLocalStorage
 } from './address';

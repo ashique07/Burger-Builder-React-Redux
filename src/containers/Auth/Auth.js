@@ -141,6 +141,8 @@ class Auth extends Component {
         
         if(this.props.isAuthenticated)
         {
+            this.props.onFetchAddress(this.props.token, this.props.userId);
+            
             authRedirect = <Redirect to={this.props.authRedirectPath}/>;
         }
 
@@ -178,6 +180,7 @@ const mapDispatchToProps = dispatch => {
 
         onAuth : (email, password, isSignup) => dispatch(actions.auth(email, password, isSignup)),
         onSetRedirectPath : () => dispatch(actions.setAuthRedirectPath("/")),
+        onFetchAddress : (token, userId) => dispatch(actions.fetchAddress(token, userId))
     };
 };
 

@@ -107,6 +107,7 @@ export const fetchAddress = (token, userId) => {
                         };
                     }
 
+               localStorage.setItem("address", JSON.stringify(fetchedData.addressData));     
                dispatch(fetchAddressSuccess(fetchedData.addressData));
             }
         )
@@ -140,5 +141,19 @@ export const fetchAddressFail = (error) => {
     return {
         type : actionTypes.FETCH_ADDRESS_FAIL,
         error : error 
+    };
+};
+
+export const addressCheckLocalStorage = () => {
+
+    return dispatch => {
+
+    const address = localStorage.getItem("address");
+
+    if(address)
+    {
+        dispatch(fetchAddressSuccess(JSON.parse(address)));
+    }
+ 
     };
 };

@@ -33,6 +33,7 @@ class App extends Component {
   {
     this.props.onTryAutoSignUp();
     this.props.onTryFindPathName();
+    this.props.onTryFindAddress();
   }
 
   render(){
@@ -84,7 +85,8 @@ const mapDispatchToProps = dispatch => {
 
   return {
     onTryAutoSignUp : () => dispatch(actions.authCheckLocalStorage()),
-    onTryFindPathName : () => dispatch(actions.appCheckLocalStorage())
+    onTryFindPathName : () => dispatch(actions.appCheckLocalStorage()),
+    onTryFindAddress : () => dispatch(actions.addressCheckLocalStorage())
   };
 };
 

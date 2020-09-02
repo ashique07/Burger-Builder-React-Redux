@@ -8,6 +8,12 @@ export class NavigationItems extends Component {
 
     render()
     {
+        let name = "Profile";
+        if(this.props.address !== undefined && this.props.address !== null)
+        {
+            name = this.props.address.name;
+        }
+
         return (
             <ul className={classes.NavigationItems}>
 
@@ -15,7 +21,9 @@ export class NavigationItems extends Component {
     
             {this.props.isAuthenticated ? <NavigationItem clicked={() => this.props.onNavItemClicked("/orders")} link = "/orders">Orders</NavigationItem> : null}
     
-            {this.props.isAuthenticated ? <NavigationItem clicked={() => this.props.onNavItemClicked("/profile")} link = "/profile">Profile</NavigationItem> : null}
+            {this.props.isAuthenticated ? <NavigationItem clicked={() => this.props.onNavItemClicked("/profile")} link = "/profile">
+                {name}
+                </NavigationItem> : null}
     
             {this.props.isAuthenticated 
             ? <NavigationItem clicked={() => this.props.onNavItemClicked("/logout")} link = "/logout">Logout</NavigationItem> 
@@ -34,4 +42,12 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(null,mapDispatchToProps)(NavigationItems);
+const mapStateToProps = state => {
+
+    return {
+        address : state.address.address
+    };
+};
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavigationItems);

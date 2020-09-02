@@ -211,6 +211,8 @@ class ContactData extends Component {
 
                             isAddressAvailable = true;
 
+                localStorage.setItem("address", JSON.stringify(fetchedData.addressData));
+
                 this.setState({orderForm : updatedOrderForm, 
                     addressAvailabe : isAddressAvailable, 
                     fetchAddressLoading : false,
@@ -417,6 +419,9 @@ class ContactData extends Component {
 
         let addressRedirect = null;
         if(this.props.appPath === "/profile" && /*this.props.addressComplete*/ this.state.purchased){
+        
+        this.props.onFetchAddress(this.props.token, this.props.userId);
+
         this.props.onSetRoutePath("/");
         addressRedirect = <Redirect to = "/"/>;
         }
@@ -454,8 +459,8 @@ const mapDispatchToProps = dispatch => {
         onOrderBurger : (orderData, token) => dispatch(actions.purchaseBurger(orderData, token)),
         //onAddress : (addressData, token, userId, addressAvailabe) => dispatch(actions.address(addressData, token, userId, addressAvailabe)),
         //onAddressInit : () => dispatch(actions.addressInit()),
-        onSetRoutePath : (pathName) => dispatch(actions.navItemClicked(pathName))
-        //onFetchAddress : (token, userId) => dispatch(actions.fetchAddress(token, userId))
+        onSetRoutePath : (pathName) => dispatch(actions.navItemClicked(pathName)),
+        onFetchAddress : (token, userId) => dispatch(actions.fetchAddress(token, userId))
     };
 };
 
