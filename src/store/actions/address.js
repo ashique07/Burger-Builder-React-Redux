@@ -148,11 +148,17 @@ export const addressCheckLocalStorage = () => {
 
     return dispatch => {
 
-    const address = localStorage.getItem("address");
+    let address = localStorage.getItem("address");
 
     if(address)
     {
+        try{
         dispatch(fetchAddressSuccess(JSON.parse(address)));
+        }
+        catch(error)
+        {
+            //console.log(error);
+        }
     }
  
     };

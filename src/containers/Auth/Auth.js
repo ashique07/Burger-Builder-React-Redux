@@ -12,6 +12,8 @@ class Auth extends Component {
 
     state = {
 
+        header: "Sign-Up / Registration form",
+
         controls : {
 
             email: {
@@ -86,8 +88,18 @@ class Auth extends Component {
 
     switchAuthModeHandler = () => {
 
+        let signValue = null;
+        if(this.state.isSignup)
+        {
+            signValue = "Sign-In / LogIn form"
+        }
+        else
+        {
+            signValue = "Sign-Up / Registration form"
+        }
+
         this.setState(prevState => {
-            return {isSignup : !prevState.isSignup};
+            return {isSignup : !prevState.isSignup, header : signValue};
         });
     };
 
@@ -142,7 +154,6 @@ class Auth extends Component {
         if(this.props.isAuthenticated)
         {
             this.props.onFetchAddress(this.props.token, this.props.userId);
-            
             authRedirect = <Redirect to={this.props.authRedirectPath}/>;
         }
 
@@ -150,6 +161,7 @@ class Auth extends Component {
             <div className={classes.Auth}>
                 {authRedirect}
                 {errorMessage}
+                <h4>{this.state.header}</h4>
                 <form onSubmit = {(event) => this.submitHandler(event)}>
                     {form}
                     <Button btnType='Success'>SUBMIT</Button>

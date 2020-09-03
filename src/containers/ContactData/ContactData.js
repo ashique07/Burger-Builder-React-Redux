@@ -225,9 +225,9 @@ class ContactData extends Component {
                 error =>
                 {
                     console.log(error);
-                    this.setState({fetchAddressLoading : false})
+                    this.setState({fetchAddressLoading : false});
                 }
-            )
+            );
         
     }
 
@@ -313,8 +313,52 @@ class ContactData extends Component {
         }
     };
 
-    inputChangedHandler = (event, inputIdentifier) => {
+    clearHandler = () => {
 
+        const updatedOrderForm = {
+
+            ...this.state.orderForm,
+            name : {
+                ...this.state.orderForm.name,
+                value : "",
+                valid: false,
+                touched: false
+            },
+            street : {
+                ...this.state.orderForm.street,
+                value : "",
+                valid: false,
+                touched: false
+            },
+            zipCode : {
+                ...this.state.orderForm.zipCode,
+                value: "",
+                valid: false,
+                touched: false
+            },
+            country : {
+                ...this.state.orderForm.country,
+                value : "",
+                valid: false,
+                touched: false
+            },
+            email : {
+                ...this.state.orderForm.email,
+                value : "",
+                valid: false,
+                touched: false
+            },
+            deliveryMethod : {
+                ...this.state.orderForm.deliveryMethod,
+                value: "fastest",
+                valid: true
+            }
+        };
+
+        this.setState({orderForm : updatedOrderForm, formIsValid:false});
+    };
+
+    inputChangedHandler = (event, inputIdentifier) => {
 
         const updatedOrderForm = {
 
@@ -370,7 +414,15 @@ class ContactData extends Component {
         }
         else
         {
-            formHeading = "Please enter your information"
+            if(this.state.addressAvailabe)
+            {
+                formHeading = "Please enter the information of the burger recipient"
+            }
+            else
+            {
+                formHeading = "Please enter the information of the burger recipient. Set your profile to see these fields pre-filled with your data"
+            }
+
             buttonLabel = "Send Data"
         }
 
@@ -432,6 +484,9 @@ class ContactData extends Component {
                 {addressRedirect}
                 <h4>{formHeading}</h4>
                 {form}
+                <Button clicked={this.clearHandler} disabled={!this.state.formIsValid} btnType="Danger">
+                Clear Form
+                </Button>
             </div>
         );
     }

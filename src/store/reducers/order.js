@@ -34,16 +34,16 @@ const reducer = (state = initiatState, action) => {
             return updateObject(state, {
                 orders : state.orders.concat(newOrder),
                 loading : false,
-                purchased : true
+                purchased : false
             });
 
         case actionTypes.PURCHASE_BURGER_FAIL:
 
-            return updateObject(state,{loading : false});
+            return updateObject(state,{loading : false, purchased : false});
         
         case actionTypes.PURCHASE_BURGER_START:
             
-            return updateObject(state,{loading: true});
+            return updateObject(state,{loading: true, purchased : true});
 
         case actionTypes.FETCH_ORDERS_SUCCESS:
 

@@ -6,17 +6,22 @@ const address = (props) => {
     return(
         <div className={classes.Table}>
             <table>
-                <tr>
-                    <th>COUNTRY</th>
-                    <th>STREET</th>
-                    <th>Zip Code</th>
-                </tr>
+                <thead>
+                    <tr>
+                        <th>COUNTRY</th>
+                        <th>STREET</th>
+                        <th>Zip Code</th>
+                    </tr>
+                </thead>
 
-                <tr>
-                    <td>{props.country}</td>
-                    <td>{props.street}</td>
-                    <td>{props.zipCode}</td>
-                </tr>
+                <tbody>
+                    <tr>
+                        <td>{props.country}</td>
+                        <td>{props.street}</td>
+                        <td>{props.zipCode}</td>
+                    </tr>
+                </tbody>
+
             </table>
         </div>
 
