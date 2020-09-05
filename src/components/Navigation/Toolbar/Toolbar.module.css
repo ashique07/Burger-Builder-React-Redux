@@ -16,6 +16,11 @@
     z-index: 90;
 }
 
+.Toolbar h2{
+    color : white;
+    height : 100%;
+}
+
 .Toolbar nav {
     height: 100%;
 }
